@@ -1,0 +1,15 @@
+{
+"localizedName": "连绵群岛",
+	"description": "检测到超级单位",
+    "planet":"赛普拉"//母星名字。
+    "sector":53//区块坐标
+    "captureWave":2//胜利波次
+    "difficulty":4//难度1一5
+    "research": {
+		"parent": "生物质合成区",
+		"objectives": [
+            {
+				"type": "SectorComplete",
+				"preset": "生物质合成区"
+			}]}
+}

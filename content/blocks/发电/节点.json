@@ -1,0 +1,22 @@
+{
+	"type": "PowerNode",
+	"name": "节点",
+	"description": "传输电力",
+	"details": "BYD竟然占两格大",
+	"size": 2,
+	"health": 180,
+	"maxNodes": 25,
+	"laserRange": 15,
+	"hasPower": true,
+	"consumesPower": true,
+	"outputsPower": true,
+	"consumes": {
+		"powerBuffered": 100
+	},
+	"requirements": [
+		"青铜矿石/1"
+	],
+	"category": "power",
+	"research": "基础发电站"
+	"researchCostMultiplier": 0.2,  // 研究成本倍率：0.2（降低该设备的研究资源消耗，仅需基础成本的20%）
+}

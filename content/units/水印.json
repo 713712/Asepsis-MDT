@@ -1,0 +1,126 @@
+{
+    // === 单位基础属性 ===
+    "type": "naval",
+    "name": "水印",
+    "description": "海军单位\n弥补了啊赛普斯没有海军的缺点",
+    "outlineColor": "2E2F34FF",
+    "template": "ErekirUnitType",
+    "ammoCapacity": 30,
+    "ammoResupplyAmount": 15,
+    "speed": 1,
+    "turnCursor": false,
+    "engineOffset": 0,
+    "engineSize": 0,
+    "hitSize": 12,
+    "targetAir": true,
+    "targetGround": true,
+    "health":300,
+    "armor": 8,
+    "itemCapacity": 0,
+    "commandLimit": 0,
+    "rotateShooting": true,
+    "hitBuildings": true,
+    "hitUnits": true,
+    "researchCostMultiplier": 0.4,
+	"research": "芯片海军工厂"
+	"abilities": [    // 单位特殊能力列表
+    {
+      "type": "MoveEffectAbility", // 能力类型：移动时触发特效
+      "y": 4,                      // 特效在Y轴的偏移位置（相对单位中心）
+      "x": 10,                     // 特效在X轴的偏移位置（相对单位中心）
+      "minVelocity": 0.1,          // 触发特效的最低移动速度：单位速度≥0.1时才显示特效
+      "interval": 5,               // 特效生成间隔：每5帧生成一次特效
+      "effect": "disperseTrail",   // 特效类型：扩散轨迹（拖尾类特效）
+      "color": "F2E8789F",           // 特效颜色：十六进制色值（浅紫色）
+      "rotateEffect": true         // 特效是否随单位旋转：true=特效会跟随单位转向
+    },
+    {
+      "type": "MoveEffectAbility", // 能力类型：移动时触发特效（与上一个对称，用于单位另一侧）
+      "y": 4,                      // 特效Y轴偏移位置
+      "x": -10,                    // 特效X轴偏移位置（负数值，与上一个呈左右对称）
+      "minVelocity": 0.1,          // 触发特效的最低移动速度
+      "interval": 5,               // 特效生成间隔
+      "effect": "disperseTrail",   // 特效类型：扩散轨迹
+      "color": "F2E8789F",           // 特效颜色：浅紫色（与上一个保持一致）
+      "rotateEffect": true         // 特效是否随单位旋转
+    }
+  ],
+"weapons": [ // 武器数组：存储所有武器配置，可包含多个武器对象
+    {   
+        "name": "能量炮1",    // 武器名称：用于标识该武器（如“导弹口1”“主炮2”）
+        "reload": 120,        // 装填时间：武器发射后，需要等待700帧（或单位时间）才能再次发射
+                "shootSound":"explosionbig",
+        "x": 0, "y": 0,       // 武器位置：相对于所属载具/物体的坐标（x轴、y轴），(0,0)通常为中心点
+        "rotate": true,       // 旋转开关：true=武器可转动（如追踪目标），false=固定朝向
+        "mirror": false,      // 镜像开关：false=武器不镜像翻转，true=可根据载具朝向反向显示
+        "rotateSpeed": 5,    // 旋转速度（初始配置）：武器转动的基础速度（单位：度/帧）
+        "inaccuracy": 15,     // 射击偏差：子弹发射方向的随机偏移角度（15度内），值越大越不准
+        "shoot": {            // 射击参数：控制单次发射的子弹数量、间隔等
+            "shots": 3,      // 单次发射总子弹数：每次触发射击会发射24发子弹
+            "shotDelay": 8,  // 子弹间隔：每发子弹之间的时间间隔（15帧）
+            "barrels": 1,     // 炮管数量：2个炮管（可能配合alternate实现交替发射）
+            "spread": 3       // 弹幕扩散：多发子弹之间的角度差（2度），值越大弹幕越宽
+        },
+        "shootSound": "水印", // 射击音效：发射时播放的音效文件（此处为“导弹”音效）
+        "rotateSpeed": 1.5,      // 炮台转头速度（最终生效）：武器追踪目标时的实际转动速度（覆盖上方初始值，单位：度/帧）
+        "alternate": true,       // 交替发射：true=多炮管时交替发射（如2个炮管轮流打），false=同时发射
+        "ejectEffect": "casing1",// 弹壳特效：发射时生成的弹壳弹出效果（对应“casing1”特效文件）
+        "bullet": {              // 子弹参数：定义该武器发射的基础子弹属性
+            "sprite": "阿塞普斯-能量球", // 子弹 sprite：子弹显示的图像资源（此处为“导弹”外观）
+            "splashDamageRadius": 10, // 溅射伤害范围：子弹命中后，以15单位为半径的圆形区域内造成溅射伤害
+            "splashDamage": 20,  // 溅射伤害值：范围内目标受到的伤害（74点）
+            "damage": 5,        // 基础伤害值：子弹直接命中目标时造成的伤害（33点）
+            "speed": 4,          // 子弹速度：子弹飞行的速度（3单位/帧）
+            "lifetime": 60,      // 子弹生命周期：子弹发射后存在50帧，超时后消失（防止无限飞行）
+            "width": 8, "height": 8, // 子弹碰撞体积：子弹的宽度（7单位）和高度（10单位）（用于判定是否命中）
+            "status": "小雨减速",    // 子弹附加状态：命中目标后，给目标施加“融化”负面效果
+            "statusDuration": 60, // 状态持续时间：“融化”效果持续240帧
+            "makeFire": true,    // 点火开关：true=子弹命中后生成火焰特效（可点燃目标/地面）
+            "fragBullets": 2,    // 碎片弹数量：子弹命中/爆炸后，分裂出8发碎片弹
+            "fragRandomSpread": 10, // 碎片弹扩散：碎片弹发射方向的随机偏移角度（12度内）    "hitEffect":"massiveExplosion",
+	    "despawnEffect":{"type": "MultiEffect",
+			"effects": [
+			{"type": "ParticleEffect",
+			"particles": 10,
+			"sizeFrom": 3,
+			"sizeTo": 0,
+			"length": 30,
+			"baseLength": 3,
+			"lifetime": 20,
+			"colorFrom": "737373FF",
+			"colorTo": "737373FF",
+			"cone": 360},
+			{"type": "ParticleEffect",
+			"particles": 32,
+			"line":true,
+			"sizeFrom": 9,
+			"sizeTo": 0,
+			"length": 40,
+			"baseLength": 10,
+			"lifetime": 10,
+			"colorFrom": "FFFFFF",
+			"colorTo": "FFE176FF",
+			"cone": 360},
+			{"type": "WaveEffect",
+			"lifetime": 15,
+			"sizeFrom": 0,
+			"sizeTo": 70,
+			"strokeFrom": 4,
+			"strokeTo": 0,
+			"colorFrom": "FFE176FF",
+			"colorTo": "ffffff"}]},
+            "fragBullet": {      // 碎片弹参数：定义分裂后碎片弹的属性
+                "type": "LiquidBulletType", // 碎片弹类型：液体子弹（如“矿渣”这类液态弹药）
+                "liquid": "slag",           // 液体类型：碎片弹携带的液体（此处为“矿渣”）
+                "speed": 2,              // 碎片弹速度：碎片弹飞行速度（2.34单位/帧）
+                "lifetime": 6,              // 碎片弹生命周期：存在6帧后消失
+                "knockback": 0.3,           // 碎片弹击退：命中目标时，使目标向后退0.3单位
+                "statusDuration": 10,      // 碎片弹状态持续：给目标施加的“融化”效果持续120帧
+                "status": "小雨减速",           // 碎片弹附加状态：命中后施加“融化”效果
+                "damage": 7,              // 碎片弹伤害：单颗碎片弹造成7.5点伤害
+                "makeFire": true            // 碎片弹点火：命中后生成火焰特效
+            }
+        }
+    }
+]
+}

@@ -1,0 +1,14 @@
+{    
+    "type": "Wall",
+    "name": "超大型脆钛墙",
+    "description": "脆钛做出的墙",
+    "buildCostMultiplier": 0.45,
+    "health": 6400,
+    "size": 3,
+    "requirements": [
+        "脆钛/50",
+    ],
+    "category": "defense",
+    "research": "大型脆钛墙"
+        "researchCostMultiplier": 0.22,  // 研究成本乘数：0.45（研究该设施的成本为正常成本的45%）
+}

@@ -1,0 +1,120 @@
+{
+    // ========== 【核心属性】 ========== //
+    "type": "legs",                // 单位类型：多足步行单位
+    "name": "先遣",                 // 单位显示名称
+    "description": "为保护而生，内置大型护盾投影，为配合大型投影，拆除了范围维护和高速粒子发射器，安上单轴带有燃烧弹的轻机枪自己我保护。",          // 单位描述（此处标记为忽略）
+    "targetAir": true,             // 能攻击空中目标
+    "targetGround": true,          // 能攻击地面目标
+
+    // ===== 【特殊能力】 ===== //
+    "abilities": [
+		{
+    "type": "ForceFieldAbility",  // 能力类型：力场护盾能力
+    "sides": 12,                   // 力场的几何边数
+    "radius": 100,                 // 力场的保护半径
+    "max": 800,                   // 力场的最大能量值
+    "regen": 0.8,                // 能量恢复速率
+    "cooldown": 80               // 力场被击破后的冷却时间
+}
+    ],
+
+    // ========== 【移动系统】 ========== //
+    "speed": 0.8,                 // 移动速度（单位：格/秒）
+    "drag": 0.2,                   // 移动阻力系数
+    "rotateSpeed": 0.95,            // 身体旋转速度
+    "hovering": true,              // 悬停模式（无视地形高度差）
+    "faceTarget": true,            // 单位本体始终面向攻击目标
+
+    // ========== 【多足动画】 ========== //
+    "legCount": 6,                 // 腿部数量：6足
+    "legLength": 16,               // 腿部长度（像素）
+    "legForwardScl": 0.2,          // 腿部前伸比例
+    "legExtension": -3,            // 腿部伸展偏移量
+    "legGroupSize": 2,             // 腿部运动分组大小
+    "legMoveSpace": 0.6,           // 腿部移动间隔系数
+    "legContinuousMove": true,     // 是否持续移动腿部动画
+    "lockLegBase": true,           // 锁定腿部基部位置
+
+    // ========== 【战斗属性】 ========== //
+    "health": 900,               // 生命值
+    "armor": 15,                   // 护甲减伤8%
+    "hitSize": 17.5,               // 碰撞判定半径（像素）
+    "canDrown": false,             // 免疫溺水伤害
+
+    // ========== 【弹药系统】 ========== //
+    "ammoType": "烟煤",            // 使用晶体类弹药
+    "ammoCapacity": 15,            // 弹药容量
+
+    // ========== 【武器系统】 ========== //
+    "weapons": [
+      	        {
+        "name":"路由器5",
+            "rotate": false,  // 是否可以旋转
+            "mirror": false,  // 是否镜像
+            "top": false,// 是否位于单位顶部
+            "shootY":6,
+            "x": 4.9,  // 武器在机甲上的X坐标
+            "y": 0,  // 武器在机甲上的Y坐标
+            "reload": 5,  // 重新装填时间
+            "recoil": 1,  // 后坐力
+            "inaccuracy": 0.8,  // 射击不精度
+            "bullet": {  // 子弹配置
+                "type": "BasicBulletType",
+                  // 子弹类型为普通子弹
+                  "width": 10, // 子弹宽度
+                "height": 8, // 子弹高度
+                "damage": 15,  // 子弹伤害
+                "speed": 2.5,  // 子弹速度
+                "lifetime": 60 // 子弹存活时间
+                "status": "burning",  // 附加状态（燃烧）
+                "statusDuration": 180, // 状态持续时间（帧）
+                "frontColor": "FFECC8FF",      // 弹头颜色（带透明度）
+                "backColor": "FFDA95FF",       // 弹尾颜色
+                
+                "despawnEffect": {
+                    "type": "multiEffect",     // 复合特效
+                    "effects": [
+                        {
+                            "type": "melting",  // 粒子
+                            "particles": 11,           // 粒子数量
+                            "length": 15              // 喷射距离
+                            "colorFrom": "FFDA95FF",
+                            "colorTo": "FFECC8FF",     // 最后颜色
+                     }
+                ],
+            },
+            
+                "hitEffect": {
+                    "type": "multiEffect",     // 复合特效
+                    "effects": [
+                        {
+                            "type": "melting",  // 粒子
+                            "particles": 16,           // 粒子数量
+                            "length": 15              // 喷射距离
+                            "colorFrom": "FFDA95FF",
+                            "colorTo": "FFECC8FF",     // 最后颜色
+                     }
+                ],
+            },
+                "shootEffect": {    // 射击特效
+                    "type": "multiEffect",     // 复合特效
+                    "effects": [
+                        {
+                            "type": "melting",  // 粒子
+                            "particles": 6,           // 粒子数量
+                            "length": 5              // 喷射距离
+                            "colorFrom": "FFDA95FF",
+                            "colorTo": "FFECC8FF",     // 最后颜色
+                     }
+                ],
+            },
+            }
+        },  
+    	        ]
+    // ========== 【科技需求】 ========== //
+    "alwaysUnlocked": false,       // 非初始解锁单位
+        "researchCostMultiplier": 0.5,  // 研究
+    "research": {
+        "parent": "冰封盆地"         // 前置研究需要在"组装厂"中解锁
+    }
+}

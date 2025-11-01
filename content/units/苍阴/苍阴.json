@@ -1,0 +1,89 @@
+{
+    // === 单位基础属性 ===
+    "type": "naval",
+    "name": "苍阴",
+    "description": "海军单位\n拥有一挺三连激光炮",
+    "outlineColor": "2E2F34FF",
+    "template": "ErekirUnitType",
+    "ammoCapacity": 50,
+    "ammoResupplyAmount": 15,
+    "speed": 0.7,
+    "turnCursor": false,
+    "engineOffset": 0,
+    "engineSize": 0,
+    "hitSize": 10,
+    "targetAir": true,
+    "targetGround": true,
+    "health":750,
+    "armor": 18,
+    "itemCapacity": 0,
+    "commandLimit": 0,
+    "rotateShooting": true,
+    "hitBuildings": true,
+    "hitUnits": true,
+    "researchCostMultiplier": 0.4,
+	"research": "水印"
+	"rotateSpeed":0.5,//旋转的速度
+	"abilities": [    // 单位特殊能力列表
+    {
+      "type": "MoveEffectAbility", // 能力类型：移动时触发特效
+      "y": 6,                      // 特效在Y轴的偏移位置（相对单位中心）
+      "x": 10,                     // 特效在X轴的偏移位置（相对单位中心）
+      "minVelocity": 0.1,          // 触发特效的最低移动速度：单位速度≥0.1时才显示特效
+      "interval": 5,               // 特效生成间隔：每5帧生成一次特效
+      "effect": "disperseTrail",   // 特效类型：扩散轨迹（拖尾类特效）
+      "color": "F2E8789F",           // 特效颜色：十六进制色值（浅紫色）
+      "rotateEffect": true         // 特效是否随单位旋转：true=特效会跟随单位转向
+    },
+    {
+      "type": "MoveEffectAbility", // 能力类型：移动时触发特效（与上一个对称，用于单位另一侧）
+      "y": 6,                      // 特效Y轴偏移位置
+      "x": -10,                    // 特效X轴偏移位置（负数值，与上一个呈左右对称）
+      "minVelocity": 0.1,          // 触发特效的最低移动速度
+      "interval": 5,               // 特效生成间隔
+      "effect": "disperseTrail",   // 特效类型：扩散轨迹
+      "color": "F2E8789F",           // 特效颜色：浅紫色（与上一个保持一致）
+      "rotateEffect": true         // 特效是否随单位旋转
+    }
+  ],
+"weapons": [ // 武器数组：存储所有武器配置，可包含多个武器对象
+    {   
+        "name": "苍阴炮1",    // 武器名称：用于标识该武器（如“导弹口1”“主炮2”）
+        "reload": 100,        // 装填时间：武器发射后，需要等待700帧（或单位时间）才能再次发射
+                "shootSound":"explosionbig",
+        "x": 0, "y": 0,       // 武器位置：相对于所属载具/物体的坐标（x轴、y轴），(0,0)通常为中心点
+        "rotate": true,       // 旋转开关：true=武器可转动（如追踪目标），false=固定朝向
+        "mirror": false,      // 镜像开关：false=武器不镜像翻转，true=可根据载具朝向反向显示
+        "rotateSpeed": 3,    // 旋转速度（初始配置）：武器转动的基础速度（单位：度/帧）
+        "inaccuracy": 15,     // 射击偏差：子弹发射方向的随机偏移角度（15度内），值越大越不准
+        "shoot": {            // 射击参数：控制单次发射的子弹数量、间隔等
+            "shots": 3,      // 单次发射总子弹数：每次触发射击会发射24发子弹
+            "shotDelay": 1,  // 子弹间隔：每发子弹之间的时间间隔（15帧）
+            "barrels": 1,     // 炮管数量：2个炮管（可能配合alternate实现交替发射）
+            "spread": 10       // 弹幕扩散：多发子弹之间的角度差（2度），值越大弹幕越宽
+        },
+        "shootSound": "水印", // 射击音效：发射时播放的音效文件（此处为“导弹”音效）
+        "alternate": true,       // 交替发射：true=多炮管时交替发射（如2个炮管轮流打），false=同时发射
+        "ejectEffect": "casing1",// 弹壳特效：发射时生成的弹壳弹出效果（对应“casing1”特效文件）
+		"bullet": {//子弹数据
+				"type": "LaserBulletType",//激光子弹
+				"healPercent": 0.1,//治疗百分比
+				"recoil": 1,//子弹后坐力
+				"damage": 75,//伤害
+				"collidesTeam": true,//子弹是否会对队友造成伤害
+				"laserAbsorb": false,//子弹是否会被激光吸收（就是是否会被塑钢强这一类拦截）
+				"shootEffect": "bigShockwave",//射击效果
+				"sideAngle": 10,//侧面出来的那一个突刺的角度
+				"sideWidth": 3,//侧面突刺出来的宽度
+				"sideLength": 80,//侧面突刺出来的长度
+				"colors": [//颜色
+					"FF0000FF",//最外层
+					"FFFFFFFF",//中层
+					"FF8181FF"//内层
+				],
+				"width": 10,//子弹宽度
+				"length": 280//子弹长度
+			}
+    }
+]
+}

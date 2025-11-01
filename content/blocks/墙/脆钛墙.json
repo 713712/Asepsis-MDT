@@ -1,0 +1,14 @@
+{    
+    "type": "Wall",
+    "name": "脆钛墙",
+    "description": "脆钛墙，结构较强于青铜墙",
+    "buildCostMultiplier": 0.45,
+    "health": 2500,
+    "size": 1,
+    "requirements": [
+        "脆钛/18",
+    ],
+    "category": "defense",
+    "research": "连绵群岛"
+        "researchCostMultiplier": 0.42,  // 研究成本乘数：0.45（研究该设施的成本为正常成本的45%）
+}

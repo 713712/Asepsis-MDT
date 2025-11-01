@@ -1,0 +1,34 @@
+{
+	"type": "GenericCrafter",
+	"name": "劣质硅合成器",
+	"description": "我们发现青铜矿粒与沙有相似的结构，结合烟煤能合成出劣质硅，但由于原料限制导致硅纯度不高，无法应用在高精度工厂及高级单位",
+	"health":240,
+	"itemCapacity":40,
+	  "outputItem": {
+    "item": "劣质硅", // 输出物品名称（需与自定义物品一致）
+    "amount":4// 单次生产 3 个
+  },
+	"size":1,
+	"hasItems": true,
+	 "craftTime": 90, // 制造时间（单位为刻，1秒=60刻）
+	"drawer":{
+        "type":"crafting",
+        "drawers":[
+            "DrawDefault",
+            "DrawFlame"
+            ]
+    },
+	"updateEffect": "smeltsmoke",
+	"consumes": {
+    "items": [
+      { "item": "青铜矿石", "amount": 4 },    // 每次消耗 4 铅
+      { "item": "烟煤", "amount": 2 }, // 每次消耗 6 硅
+    ]
+  },
+   "requirements": [
+    { "item": "青铜矿石", "amount": 30 },
+    ],
+	"category": "crafting",
+	"research": "冰封盆地",
+	"idleSound": "respawning",
+}

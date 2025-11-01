@@ -1,0 +1,22 @@
+{
+	"type": "UnitFactory",
+	"name": "路由器进阶厂",
+	"description": "让路由器站起来！",//介绍
+	"health": 850,
+	"size": 3,
+	"plans": [
+		{
+			"unit": "氧化路由器",
+			"time": 1300,
+			"requirements": [
+				"青铜矿石/100",
+			]
+		},
+	],
+	"requirements": [
+		"青铜矿石/80",
+	],
+	"category": "units",
+	"research": "寒风哨站"
+	"researchCostMultiplier": 0.35,
+}

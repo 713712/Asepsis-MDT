@@ -1,0 +1,120 @@
+{
+  "type":"PowerTurret",//ItemTurret 用物品的炮塔，PowerTurret 用电的炮塔，LiquidTurret用水的炮塔，TractorBeamTurret 塞星上的牵引塔(就是那个很fw的只对空的塔)(当然你写也可以写对地的)，ContinuousTurret 埃星上那个对单伤害极高的激光塔 (只用氮气的那个)(就是光辉那样的塔)，LaserTurret 赛星上蓝瑟炮那样的塔，ContinuousLiquidTurret 埃星上那个用气体的气体激光塔(就是升华那样的塔)
+  "name":"凝聚",//名称
+  "description":"向敌人发射雷光子弹\n声音吓哭敌人",//描述
+  "health":900,//生命
+  "liquidCapacity":20,//液体容量
+  "size":2,//大小
+  //"hasLiquids":true,//是否需要液体(单纯只要液体加速可以删除)
+  	"consumes": {//所需
+    "power":3//电量所需(1/60)
+    /*"liquid":{//是液体所需
+    "liquid":"water",//液体名字
+    "amount":1,//需要数量(1/60)
+    "booster":true,//是否无液体加速
+    },//消耗的液体（一种液体）*/
+		"coolant": {//加强（液体）
+			"amount": 0.1,//所需（1:60）
+			"optional": true//无液体是否加工作(参考融毁)
+		}//（所有可加速液体）
+	},
+    "coolantMultiplier":4,//液体加速百分比(数字越大，液体加强倍率越高，同时液体加强倍率也与液体需要数量有关液体需要数量多的同时加强，倍率也高)
+  "requirements":[
+  {"item":"青铜矿石","amount":80},
+  {"item":"劣质硅","amount":40},
+  ],//建造消耗的材料
+  "unitSort": "weakest",//优先瞄准最弱目标
+    "shootSound": "凝聚",  // 射击音效：攻击时播放的音效文件名
+  "category":"turret",//游戏界面分类
+  "research":"生物质合成区",//科技树前一项
+  "rebuildable":true,//是否能重建
+  "baseExplosiveness":0,//基础爆炸性
+  "canOverdrive":true,//是否可以被超速
+  "targetable":true,//是否受到单位攻击
+  "solid":true,//是否是固体
+  "heatColor":"FF0000",//过热颜色
+  "shootEffect":"hitLancer",//射击特效
+  "smokeEffect":"hitLancer",//冒烟特效
+  "ammoUseEffect":"hitLancer",//换弹特效
+  "ammoPerShot":1,//射击一次消耗子弹(必须为整数且大于等于1)
+  "range":180,//范围（8/1）
+  "reload":60,//攻击间隔（60/1）
+  "inaccuracy":0,//精准度
+  "shots":3,//一次射出子弹数
+  "spread":15,//散弹散布（具体参考e星扩散）
+  "recoil":1,//后坐力
+  "restitution":0.2,//复原速度
+  //"recoilTime":0//后坐力回复需要总时间
+  "minWarmuup":1//预热时间(参考魔灵)
+  "cooldown":0.2,//冷却延迟
+  "rotatespeed":3,//转速
+  "shootCone":1,//瞄准射击最大误差
+  "shootShake":0.5,//射击摇晃屏幕
+  "xRand":0,//射击偏移
+  "targetAir":true,//瞄准空军
+  "targetGround":true,//瞄准陆军
+  "outlineIcon":false,//图标描边
+  "outlineColor":"FFFFFF",//描边颜色
+  "coolEffect":"hitLancer",//液体加速特效
+  "maxAmmo":10,//弹夹容量
+  "shootType": { // 子弹类型配置：点射子弹（PointBulletType）
+     "type": "ShrapnelBulletType",//子弹类型，这里为雷光子弹
+     "reloadMultiplier": 1,
+     "length": 180,//伤害范围长
+     "damage": 80,//伤害
+     "width": 8,//伤害范围宽
+     "fromColor": "8E909793",
+     "toColor": "8E909793",
+     "pierce": true,//穿透单位
+     "shootEffect": {
+      "type": "ParticleEffect",
+      "particles": 9,
+      "sizeFrom": 9,
+      "sizeTo": 0,
+      "line": true,
+      "length": 55,//长度
+      "baseLength": 0,
+      "lifetime": 15,//子弹存在时间(帧数)
+      "colorFrom": "dedede",
+      "colorTo": "aaaaaa",
+      "cone": 30//圆锥角度
+      "buildingDamageMultiplier":0.01//打建筑时的增伤
+      "splashDamage":5,//爆炸伤害
+      "splashDamageRadius":10,//爆炸伤害范围
+      "incendAmount":3,//火焰数量
+      "incendSpread":1,//火焰蔓延范围
+      "incendChance":0.5,//火焰产生几率
+      "lightining":5,//闪电数量
+      "lightningLength":3,//闪电长度
+      "hitShake":0,//击中摇晃屏幕
+  },
+  },
+      "drawer": { // 外观渲染配置（自定义塔体视觉效果）
+        "type": "DrawMulti", // 渲染类型：多重渲染（可叠加多个渲染组件）
+        "drawers": [ // 渲染组件列表
+            {
+                "type": "DrawTurret", // 组件类型：防御塔专用渲染
+                "parts": [ // 塔体渲染部件
+                    {
+                        "type": "HaloPart", // 部件类型：光环特效（充能时的环绕效果）
+                        "radius": 5,       // 初始半径：0（未充能时不可见）
+                        "radiusTo": 20,     // 充能后半径：12单位（充能时光环扩大到12）
+                        "shapes": 3,                      // 形状数量：4个（生成4个三角形光环）
+                        "tri": true,                       // 是否为三角形：是（光环形态为三角形）
+                        "x": 0,                            // 水平偏移：0（光环横向居中）
+                        "y": 18,                          // 垂直偏移：18单位（光环纵向向上偏移18）
+                        "haloRadius": 0,                  // 光环旋转半径：0（无额外旋转半径）
+                        "haloRotateSpeed": -5,           // 旋转速度：-2.5（负号表示逆时针旋转）
+                        "triLength": 20,                   // 三角形初始长度：30单位
+                        "triLengthTo": 30,                 // 充能后长度：15单位（充能时三角形缩短到15）
+                        "shapeRotation": 180,               // 形状旋转角度：180度（三角形自身翻转180度）
+                        "color": "F2E87877",         // 光环颜色：浅蓝色（十六进制色码，含透明度）
+                        "layer": 110,                      // 渲染层级：110（确保在塔体前景显示，不被遮挡）
+                        "progress": "warmup"               // 效果触发条件：随充能进度变化（充能时才显示该特效）
+                    }
+                ]
+            }
+        ]
+    }
+}
+//炮台特效看特效接口

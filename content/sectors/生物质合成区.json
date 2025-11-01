@@ -1,0 +1,16 @@
+{
+"localizedName": "生物质合成区",
+	"description": "显然，这里就是赛普罗敌军的降落地\n但是，建筑全炸了\n看来原住民也不欢迎赛普罗敌军啊\n我们敌军的遗址中检测到可使用的芯片，目测可以量产",
+    "planet":"赛普拉"//母星名字。
+    "sector":16//区块坐标
+    "captureWave":5//胜利波次
+    "difficulty":3//难度1一5
+    "research": {
+		"parent": "古老遗址",
+		"objectives": [
+            {
+				"type": "SectorComplete",
+				"preset": "古老遗址"
+			}
+			]}
+}

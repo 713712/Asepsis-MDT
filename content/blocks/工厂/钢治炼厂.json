@@ -1,0 +1,38 @@
+{
+	"type": "GenericCrafter",
+	"name": "钢治炼厂",
+	"description": "把脆钛和烟煤炼制成钢",
+	"health":300,
+	"itemCapacity":30,
+	  "outputItem": {
+    "item": "钢", // 输出物品名称（需与自定义物品一致）
+    "amount":4// 单次生产 3 个
+  },
+	"size":4,
+	"hasItems": true,
+	 "craftTime": 200, // 制造时间（单位为刻，1秒=60刻）
+	       	"drawer":{
+        "type":"DrawMulti",
+        "drawers":[
+            "DrawDefault",
+			"DrawFlame"
+            ]
+    },
+	"updateEffect": "smeltsmoke",
+	"consumes": {
+		"power": 2,
+    "items": [
+      { "item": "脆钛", "amount": 3 },    // 每次消耗 4 铅
+      { "item": "烟煤", "amount": 5 }, // 每次消耗 6 硅
+    ]
+  },
+   "requirements": [
+    { "item": "青铜矿石", "amount": 80 },
+     { "item": "劣质硅", "amount": 60 },
+     { "item": "铁锈", "amount": 50 },
+    { "item": "脆钛", "amount": 60 },
+    ],
+	"category": "crafting",
+	"research": "连绵群岛",
+	"idleSound": "respawning",
+}
